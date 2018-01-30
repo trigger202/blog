@@ -21,7 +21,7 @@ class Postcontroller extends Controller
      */
     public function index()
     {
-        $blogList = Post::all();
+        $blogList = Post::all()->where('user_id', Auth::user()->id);
 
         return view('index',['blogList'=>$blogList ]);
     }
@@ -61,7 +61,7 @@ class Postcontroller extends Controller
         $post->text=$request->text;
 
         $post->save();
-
+        return redirect('/');
 
     }
 
@@ -78,7 +78,18 @@ class Postcontroller extends Controller
      */
     public function show($id)
     {
-        //
+
+
+        $post = Post::findorfail($id);
+        if($post)
+        {
+            if($post->user_id==Auth::user()->id){
+                var_dump($post->title); /*this is a temp view*/
+
+                var_dump($post->text); /*this is a temp view*/
+            }
+        }
+
     }
 
     /**
