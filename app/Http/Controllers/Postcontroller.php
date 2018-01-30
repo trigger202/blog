@@ -61,7 +61,8 @@ class Postcontroller extends Controller
         $post->text=$request->text;
 
         $post->save();
-        return redirect('/');
+
+       return redirect('/')->with('status', 'New post created!');
 
     }
 

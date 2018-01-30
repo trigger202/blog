@@ -5,6 +5,12 @@
 
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 	@foreach($blogList as $blog)
 			<h2>{{ $blog->title }} - {{ $blog->id }}  </h2>
 			@isset($blog->user->name)
