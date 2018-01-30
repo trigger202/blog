@@ -1,11 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Post;
 use Illuminate\Http\Request;
+use Auth;
 
 class Postcontroller extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,9 @@ class Postcontroller extends Controller
      */
     public function index()
     {
-        //
+        $blogList = Post::all();
+
+        return view('index',['blogList'=>$blogList ]);
     }
 
     /**
@@ -23,7 +33,12 @@ class Postcontroller extends Controller
      */
     public function create()
     {
-        //
+        if(Auth::check() )
+            {
+                return view('post_create');
+            }
+        return view('/login');
+
     }
 
     /**
@@ -34,7 +49,25 @@ class Postcontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!Auth::check() )
+            {
+                $this->redirectToLoginPage();
+            }
+
+        $post = new Post();
+
+        $post->user_id = Auth::user()->id;
+        $post->title=$request->title;
+        $post->text=$request->text;
+
+        $post->save();
+
+
+    }
+
+    public function redirectToLoginPage()
+    {
+        return view('/loggin');
     }
 
     /**
