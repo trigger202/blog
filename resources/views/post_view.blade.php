@@ -13,6 +13,12 @@
 		<p>{{$post->text }} </p>
 
 
+		<h3>Comments</h3>
+
+		@foreach($post->comments  as $comment)
+			<p> {{ $comment->comment}} </p>
+
+		@endforeach
 
         <form action="/posts/reaction" class="form-group" method="POST">
         	{{ CSRF_field() }}
@@ -28,6 +34,9 @@
 
 	        <button type="submit">send</button>
         </form>
+
+
+
 
 </div>
 

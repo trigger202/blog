@@ -24,6 +24,10 @@ class Postcontroller extends Controller
      */
     public function index()
     {
+        if(!Auth::check())
+            {
+                return redirect('login');
+            }
         // Auth::logout();
         // return redirect('login');
 
@@ -55,6 +59,7 @@ class Postcontroller extends Controller
      */
     public function store(Request $request)
     {
+
         if(!Auth::check() )
             {
                 $this->redirectToLoginPage();
@@ -96,6 +101,13 @@ class Postcontroller extends Controller
         {
             exit("access denied");
         }
+
+
+
+
+
+        dd($user->posts);
+
 
         return view('post_view', ['post'=>$post]);
 
