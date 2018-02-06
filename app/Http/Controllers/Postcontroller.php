@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\Like;
+use App\Comment;
+
 use Illuminate\Http\Request;
 use Auth;
 
@@ -125,7 +128,29 @@ class Postcontroller extends Controller
 
     public function reaction(Request $request)
     {
-        dd($request);
+        $user = Auth::user();
+        $post = Post::findorfail($request->postID);
+        if(!$post)
+        {
+            return "post does not exist";        
+        }
+
+
+        $comment = new Comment();
+
+        $comment->post_id = $post->id;
+        $comment->user_id = $user->id;
+        $comment->comment= $request->comment;
+        $comment->save();
+
+        $like = new Like();
+        $like->user_id = $user->id;
+        $like->post_id = $post->id;
+        $like->save();
+
+        dd($like);
+
+
     }
 
     /**

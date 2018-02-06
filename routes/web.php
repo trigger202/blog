@@ -20,9 +20,7 @@ Route::get('/posts', 'PostController@index');
 Route::get('post/create', 'PostController@create');
 Route::Post('/posts', 'PostController@store');
 Route::get('/posts/{id}', 'PostController@show');
-Route::Post('/posts/{id}/reaction', 'PostController@reaction');
-
-
+Route::Post('/posts/reaction', 'PostController@reaction');
 
 
 
