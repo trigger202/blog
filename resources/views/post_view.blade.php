@@ -12,15 +12,39 @@
 
 		<p>{{$post->text }} </p>
 
-		<button type="button" class="btn btn-default btn-sm"> 
-          <span class="glyphicon glyphicon-thumbs-up"></span> 5
-        </button>
+
+
+        <form action="/posts/reaction" class="form-group" method="POST">
+        	{{ CSRF_field() }}
+        	<label for="Comment">Comment:</label>
+        	<textarea class="form-control" name="comment"></textarea>
+        	<input type="hidden" name="like" value="0" id="likeCount">
+        	<input type="hidden" name="postID" value="{{$post->id}}" id="likeCount" readonly>
+
+
+			<button type="button" class="btn btn-default btn-sm" id="like"> 
+	          <span class="glyphicon glyphicon-thumbs-up"></span> 5
+	        </button><br>
+
+	        <button type="submit">send</button>
+        </form>
 
 </div>
 
 
 
 
+
+
+
+<script type="text/javascript">
+	
+	$('#like').click(function() 
+	{
+		$('#likeCount').val(1);
+		var count = $('#likeCount').val();
+	});
+
+</script>
+
 @endsection
-
-

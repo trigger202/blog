@@ -92,7 +92,6 @@ class Postcontroller extends Controller
         if($user->id!=$post->user->id)
         {
             exit("access denied");
-
         }
 
         return view('post_view', ['post'=>$post]);
@@ -122,6 +121,11 @@ class Postcontroller extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function reaction(Request $request)
+    {
+        dd($request);
     }
 
     /**
