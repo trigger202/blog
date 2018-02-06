@@ -83,16 +83,21 @@ class Postcontroller extends Controller
     public function show($id)
     {
 
-
+        $user = Auth::user();
         $post = Post::findorfail($id);
-        if($post)
+        if(!$post)
         {
-            if($post->user_id==Auth::user()->id){
-                var_dump($post->title); /*this is a temp view*/
-
-                var_dump($post->text); /*this is a temp view*/
-            }
+            exit("Post does NOT exist");
         }
+        if($user->id!=$post->user->id)
+        {
+            exit("access denied");
+
+        }
+
+        return view('post_view', ['post'=>$post]);
+
+
 
     }
 
