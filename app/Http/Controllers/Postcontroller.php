@@ -21,6 +21,9 @@ class Postcontroller extends Controller
      */
     public function index()
     {
+        // Auth::logout();
+        // return redirect('login');
+
         $blogList = Post::all()->where('user_id', Auth::user()->id);
 
         return view('index',['blogList'=>$blogList ]);
