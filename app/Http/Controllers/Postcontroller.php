@@ -25,12 +25,12 @@ class Postcontroller extends Controller
      */
     public function index()
     {
+        // Auth::logout();
         if(!Auth::check())
         {
             return redirect('login');
         }
 
-        dd(Auth::user());
 
         $blogList = Post::all()->where('user_id', Auth::user()->id);
 
@@ -177,13 +177,21 @@ class Postcontroller extends Controller
         $comment->comment= $request->comment;
         $comment->save();
 
-        $like = new Like();
-        $like->user_id = $user->id;
-        $like->post_id = $post->id;
-        $like->save();
 
-        dd($like);
+        $message = "You have commented on $post->title ";
+        if($request->like==1)
+        {
+            $like = new Like();
+            $like->user_id = $user->id;
+            $like->post_id = $post->id;
+            $like->save();
+            $message = "You have commented and liked on $post->title ";
 
+        }
+            
+
+
+        return redirect::back()->with('status', $message);
 
     }
 

@@ -5,10 +5,18 @@
 
 @section('content')
 
-
 <div class="wrapper">
 
-		<label for="title">{{$post->title}} </label><br>
+		@if (session('status'))
+		    <div class="alert alert-success">
+		        {{ session('status') }}
+		    </div>
+		@endif
+
+
+		<a href="/posts"><button class="btn btn-primary btn-lg">Return To Posts</button></a><br>
+
+		<h2 for="title">{{$post->title}} </h2><br>
 
 		<p>{{$post->text }} </p>
 

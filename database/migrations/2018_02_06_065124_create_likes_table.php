@@ -15,11 +15,13 @@ class CreateLikesTable extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->foriegn('user_id')->references('Users')->on('id')->onDelete('cascade');
+            $table->integer('user_id')->foriegn('user_id')->references('Users')->on('id')->onDelete('casca');
             $table->integer('post_id')->foriegn('post_id')->references('Posts')->on('id')->onDelete('cascade');
             $table->timestamps();
             // $table->unique(array('user_id','post_id'));
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
