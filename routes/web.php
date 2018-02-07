@@ -12,8 +12,8 @@
 */
 
 Auth::routes();
-// Route::get('/', 'PostController@index');
-// Route::get('/posts', 'PostController@index');
+Route::get('/', 'PostController@index');
+Route::get('/posts', 'PostController@index');
 
 
 
@@ -24,6 +24,8 @@ Route::Post('/posts/reaction', 'PostController@reaction');
 Route::get('/posts/{id}/edit', 'PostController@edit');
 
 Route::patch('/posts/{id}', 'PostController@update');
+Route::get('/posts/{id}/delete', 'PostController@destroy');
+
 
 
 

@@ -26,11 +26,11 @@ class Postcontroller extends Controller
     public function index()
     {
         if(!Auth::check())
-            {
-                return redirect('login');
-            }
-        // Auth::logout();
-        // return redirect('login');
+        {
+            return redirect('login');
+        }
+
+        dd(Auth::user());
 
         $blogList = Post::all()->where('user_id', Auth::user()->id);
 
@@ -217,6 +217,15 @@ class Postcontroller extends Controller
     public function destroy($id)
     {
         $post = Post::findorfail($id);
-        $post->delete();
+
+        if($post->user_id==Auth::user()->id)
+        {
+            $post->delete();
+            return redirect::back()->with('status','Post Deleted');
+            
+        }
+        else
+            return redirect::back()->with('status','Becareful!, its not your post');
+            
     }
 }
