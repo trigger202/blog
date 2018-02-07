@@ -7,6 +7,7 @@ use App\Comment;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class Postcontroller extends Controller
 {
@@ -105,8 +106,7 @@ class Postcontroller extends Controller
 
 
 
-
-        dd($user->posts);
+        // dd($user->posts);
 
 
         return view('post_view', ['post'=>$post]);
@@ -123,7 +123,22 @@ class Postcontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $user = Auth::user();
+        $post = Post::findorfail($id);
+        if(!$post)
+        {
+            exit("Post does NOT exist");
+        }
+        if($user->id!=$post->user->id)
+        {
+            exit("access denied");
+        }
+
+        return view('post_edit', ['post'=>$post]);
+
+
+
     }
 
     /**
@@ -135,7 +150,14 @@ class Postcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findorfail($id);
+
+        $post->title = $request->title;
+        $post->text = $request->post_text;
+
+        $post->save();
+
+         return Redirect::back()->with('status', 'Post updated successfully!');
     }
 
     public function reaction(Request $request)
@@ -165,6 +187,27 @@ class Postcontroller extends Controller
 
     }
 
+
+    /*
+        // -1 post does not exist
+        0 access denied
+        1 post exists and user has access to it (his post)
+    
+    */
+    public function UserHasAccessToResource($id)
+    {
+        $user = Auth::user();
+        $post = Post::findorfail($id);
+        if(!$post)
+        {
+            exit("Post does NOT exist");
+        }
+        if($user->id!=$post->user->id)
+        {
+            exit("access denied");
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -173,6 +216,7 @@ class Postcontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findorfail($id);
+        $post->delete();
     }
 }

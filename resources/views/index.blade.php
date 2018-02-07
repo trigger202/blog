@@ -12,9 +12,10 @@
 @endif
 
 
-<h2>All active users</h2>
+<h2>Your Posts</h2>
+<hr>
 @foreach($blogList as $blog)
-		<h2>{{ $blog->title }} - {{ $blog->id }}  </h2>
+		<h2> <a href="/posts/{{$blog->id}}">{{ $blog->title }} - {{ $blog->id }} </a> </h2>
 		@isset($blog->user->name)
 			<h4> Author: {{ $blog->user->name }}
 		@endisset
