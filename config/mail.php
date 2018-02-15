@@ -18,12 +18,7 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
-    'ses' => 
-    [
-        'key' => 'AKIAINVYNHK43UGR6QSQ',
-        'secret' => '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',
-        'region' => 'us-east-1'
-    ],
+
 
     /*
     |--------------------------------------------------------------------------
