@@ -169,7 +169,7 @@ class Postcontroller extends Controller
             return "post does not exist";        
         }
 
-
+        $ruels = Validator('name'=>'required')
         $comment = new Comment();
 
         $comment->post_id = $post->id;

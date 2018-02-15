@@ -18,6 +18,13 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
+    'ses' => 
+    [
+        'key' => 'AKIAINVYNHK43UGR6QSQ',
+        'secret' => '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',
+        'region' => 'us-east-1'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -55,9 +62,15 @@ return [
     |
     */
 
-    'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'llfareh@yahoo.co.nz'),
+    //     'name' => env('MAIL_FROM_NAME', 'Ali Fareh TEst'),
+    // ],
+
+    'to' => 
+    [
+        'address' => 'fareh@example.com',
+        'name' => 'Ali Fareh'
     ],
 
     /*
