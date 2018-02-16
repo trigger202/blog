@@ -34,7 +34,7 @@ class Postcontroller extends Controller
 
         $blogList = Post::all()->where('user_id', Auth::user()->id);
 
-        return view('index',['blogList'=>$blogList ]);
+        return view('posts.index',['blogList'=>$blogList ]);
     }
 
     /**
@@ -46,7 +46,7 @@ class Postcontroller extends Controller
     {
         if(Auth::check() )
             {
-                return view('post_create');
+                return view('posts.post_create');
             }
         return view('/login');
 
@@ -109,7 +109,7 @@ class Postcontroller extends Controller
         // dd($user->posts);
 
 
-        return view('post_view', ['post'=>$post]);
+        return view('posts.post_view', ['post'=>$post]);
 
 
 
@@ -135,7 +135,7 @@ class Postcontroller extends Controller
             exit("access denied");
         }
 
-        return view('post_edit', ['post'=>$post]);
+        return view('posts.post_edit', ['post'=>$post]);
 
 
 
@@ -186,11 +186,8 @@ class Postcontroller extends Controller
             $like->post_id = $post->id;
             $like->save();
             $message = "You have commented and liked on $post->title ";
-
         }
-            
-
-
+        
         return redirect::back()->with('status', $message);
 
     }
