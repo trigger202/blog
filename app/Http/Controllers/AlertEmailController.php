@@ -14,7 +14,7 @@ class AlertEmailController extends Controller
 	public function sendEmailAlert()
 	{
 
-		return Mail::to('farehh@gmail.com')->send(new Alert());
+		return Mail::to('ali.fareh@propertysuite.com.au')->send(new Alert());
 
 	}
 

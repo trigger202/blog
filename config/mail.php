@@ -46,6 +46,13 @@ return [
 
     'port' => env('MAIL_PORT', 587),
 
+
+    'ses' => [
+        'key' => env('SES_Key'),
+        'secret' => env('SES_Secret'),
+        'region' => 'us-east-1',  // e.g. us-east-1
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -57,14 +64,14 @@ return [
     |
     */
 
-    // 'from' => [
-    //     'address' => env('MAIL_FROM_ADDRESS', 'llfareh@yahoo.co.nz'),
-    //     'name' => env('MAIL_FROM_NAME', 'Ali Fareh TEst'),
-    // ],
+    'from' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'farehh@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Ali Fareh Tst'),
+    ],
 
     'to' => 
     [
-        'address' => 'fareh@example.com',
+        'address' => 'fareh@gmail.com',
         'name' => 'Ali Fareh'
     ],
 
