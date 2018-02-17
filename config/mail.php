@@ -18,6 +18,8 @@ return [
 
     'driver' => env('MAIL_DRIVER', 'smtp'),
 
+
+
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -44,6 +46,13 @@ return [
 
     'port' => env('MAIL_PORT', 587),
 
+
+    'ses' => [
+        'key' => env('SES_Key'),
+        'secret' => env('SES_Secret'),
+        'region' => 'US-EAST-1',  // e.g. us-east-1
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -56,8 +65,14 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'test@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'dummy sender'),
+    ],
+
+    'to' => 
+    [
+        'address' => env('TO_MAIL', 'test@gmail.com'),
+        'name' => env('TO_NAME', 'dummy reciever')
     ],
 
     /*

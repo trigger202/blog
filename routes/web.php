@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/mailable', 'AlertEmailController@sendEmailAlert');
+
 Auth::routes();
 Route::get('/', 'PostController@index');
 Route::get('/posts', 'PostController@index');
